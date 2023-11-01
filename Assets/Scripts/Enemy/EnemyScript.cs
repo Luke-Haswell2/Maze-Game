@@ -46,10 +46,8 @@ namespace Enemy
             esm.CurrentState.PhysicsUpdate();
 
             if (!nav.pathPending && nav.remainingDistance < 0.5f)
-                //IsRunning = false;
                 GoToNextPoint();
 
-            //print ("current point is " + destPoint);
         }
 
         public void CheckForStand()
