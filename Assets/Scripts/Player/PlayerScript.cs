@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 
 namespace Player
@@ -11,8 +12,8 @@ namespace Player
         public Rigidbody rb;
         public Transform playerTr;
         public float xv, yv, zv;
-        public float runSpeed = 6;
-        public float runSpeed2 = 6;
+        public float runSpeed = 8;
+        public float runSpeed2 = 8;
 
         public PlayerStandState standingState;
         public PlayerRunState runningState;
@@ -66,7 +67,7 @@ namespace Player
         {
             if (Input.GetKey("left"))
             {
-                runSpeed = -3;
+                runSpeed = -4;
                 runSpeed2 = 0;
                 psm.ChangeState(runningState);
                 anim.SetBool("run", true);
@@ -76,7 +77,7 @@ namespace Player
 
             if (Input.GetKey("right"))
             {
-                runSpeed = 3;
+                runSpeed = 4;
                 runSpeed2 = 0;
                 psm.ChangeState(runningState);
                 anim.SetBool("run", true);
@@ -84,7 +85,7 @@ namespace Player
 
             if (Input.GetKey("down"))
             {
-                runSpeed2 = -3;
+                runSpeed2 = -4;
                 runSpeed = 0;
                 psm.ChangeState(runningState);
                 anim.SetBool("run", true);
@@ -92,10 +93,18 @@ namespace Player
 
             if (Input.GetKey("up"))
             {
-                runSpeed2 = 3;
+                runSpeed2 = 4;
                 runSpeed = 0;
                 psm.ChangeState(runningState);
                 anim.SetBool("run", true);
+            }
+        }
+
+        void OnCollisionStay(Collision collision)
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
 

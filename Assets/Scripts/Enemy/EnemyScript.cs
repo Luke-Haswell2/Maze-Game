@@ -49,7 +49,7 @@ namespace Enemy
                 //IsRunning = false;
                 GoToNextPoint();
 
-            print ("current point is " + destPoint);
+            //print ("current point is " + destPoint);
         }
 
         public void CheckForStand()
